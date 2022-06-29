@@ -13,6 +13,7 @@ public class CompetenceMapper {
     OffreUnlinkedMapper offreUnlinkedMapper = new OffreUnlinkedMapper();
 
     public LinkedCompetenceDto toDto(Competence competence) {
+        Long id = competence.getId();
         String label = competence.getLabel();
         List<UnlinkedOffreDto> offres = competence
                 .getOffres()
@@ -20,7 +21,7 @@ public class CompetenceMapper {
                 .map(offre -> offreUnlinkedMapper.toUnlinkedDto(offre))
                 .toList();
 
-        return new LinkedCompetenceDto(label, offres);
+        return new LinkedCompetenceDto(id, label, offres);
     }
 
     public Competence toCompetence(AddCompetenceDto dto) {

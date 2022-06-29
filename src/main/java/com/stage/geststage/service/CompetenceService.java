@@ -28,7 +28,14 @@ public class CompetenceService {
     }
 
     public List<LinkedCompetenceDto> findBylabel(String label) {
-        return repository.findAllByLabelContainingIgnoreCaseOrderByLabelAsc(label);
+        return repository.findAllByLabelContainingIgnoreCaseOrderByLabelAsc(label)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
+    public Competence findById(Long id) {
+        return repository.findCompetenceById(id);
     }
 
     public List<LinkedCompetenceDto> findAll() {
